@@ -3,9 +3,6 @@
 Created on Sat Aug  8 21:12:53 2020
 
 Generates a 9x9 Sudoku Puzzle
-Rotate the puzzle by 90, 180 or 270 degrees. That adds 4 more variations.
-Flop the puzzle horizontally, vertically, or both. That adds 4 more variations.
-
 
 @author: Jun
 """
