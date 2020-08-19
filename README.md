@@ -10,6 +10,8 @@ Written in Python 3.7
 - [ ] Create a live demo of board creation
 - [ ] Create an interactive Sudoku board
 
+---
+
 ## Sudoku_Solver :ballot_box_with_check:
 Creates a completed 9x9 Sudoku board by using a backtracking algorithm to randomly "solve" an empty 9x9 board.
 
@@ -20,3 +22,7 @@ user-friendly version of the board as shown above.
 ## Sudoku_GUI :hourglass:
 Work in progress. Uses pygame and the above scripts to make an interactive Sudoku game.
 
+---
+
+### Setup
+Download and run in your favorite interpreter
