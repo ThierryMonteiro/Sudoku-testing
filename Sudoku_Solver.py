@@ -10,6 +10,7 @@ Used by generator to create a puzzle
 """
 import random
 
+# Uses backtracking to place numbers inside an empty grid
 def solve(grid):
     find = is_empty(grid)
     if not find:
@@ -29,13 +30,33 @@ def solve(grid):
         
     return False
 
+# Used for the GUI. Solves the created puzzle
+def solver(grid):
+    find = is_empty(grid)
+    if not find:
+        return True
+    else:
+        row, col = find
+
+    for i in range(1,10):
+        if check(grid, i, (row, col)):
+            grid[row][col] = i
+
+            if solve(grid):
+                return True
+
+            grid[row][col] = 0
+
+    return False
+
+# Checks to see if number placement is valid
 def check(grid, num, pos):
    # check row
    if num in row(grid, pos[0]) or num in column(grid, pos[1]) or num in block(grid, pos):
        return False
    return True
 
-
+# Checks to see if cell is empty
 def is_empty(grid): # pos is (i, j) -> (row, column)
     for i in range(len(grid)):
         for j in range(len(grid[i])):
