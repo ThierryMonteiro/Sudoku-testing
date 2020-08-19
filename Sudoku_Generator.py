@@ -20,8 +20,8 @@ def solution():
 
 # Start with an empty grid then "solve" it
 def maker():
-    
-    puzzle = deepcopy(solution())
+    sol = solution()
+    puzzle = deepcopy(sol)
     # Then take out numbers in the grid. That becomes the puzzle while grid remains
     # as the solution
     
@@ -55,5 +55,5 @@ def format(puzzle):
     
     print("╚═══╧═══╧═══╩═══╧═══╧═══╩═══╧═══╧═══╝")
             
-a = maker()
-b = solution() 
+if __name__ == '__main__':
+    format(maker())
