@@ -2,198 +2,62 @@
 """
 Created on Wed Aug 12 14:25:57 2020
 
+pyggame GUI for Sudoku
+
 @author: Jun
 """
-import pygame
-from Sudoku_Generator import maker, solution
-from Sudoku_Solver import solve, check
+import pygame, sys
+from pygame.locals import *
+#from Sudoku_Generator import maker, solution
+#from Sudoku_Solver import solve, check, solver
 
-pygame.font.init()
+# Window Size - Width has to be a multiple of 9
+width = 540
+height = 540
 
-class Grid:
-    board = maker()
+# Colors
+color = {'black':[0,0,0], 'white':[255,255,255], 'gray': [200,200,200]}
+
+# Draws the grid
+def drawGrid():
+    square = width // 3
+    cell = square // 3
     
-    def __init__(self, rows, cols, width, height):
-        self.rows = rows
-        self.cols = cols
-        self.cubes = [[Cube(self.board[i][j], i, j, width, height) for j in range(cols)] for i in range(rows)]
-        self.width = width
-        self.height = height
-        self.model = None
-        self.selected = None
-
-    def update_model(self):
-        self.model = [[self.cubes[i][j].value for j in range(self.cols)] for i in range(self.rows)]
-
-    def place(self, val):
-        row, col = self.selected
-        if self.cubes[row][col].value == 0:
-            self.cubes[row][col].set(val)
-            self.update_model()
-
-            if check(self.model, val, (row,col)) and solve(self.model):
-                return True
-            else:
-                self.cubes[row][col].set(0)
-                self.cubes[row][col].set_temp(0)
-                self.update_model()
-                return False
-
-    def sketch(self, val):
-        row, col = self.selected
-        self.cubes[row][col].set_temp(val)
-
-    def draw(self, win):
-        # Draw Grid Lines
-        gap = self.width / 9
-        for i in range(self.rows+1):
-            if i % 3 == 0 and i != 0:
-                thick = 4
-            else:
-                thick = 1
-            pygame.draw.line(win, (0,0,0), (0, i*gap), (self.width, i*gap), thick)
-            pygame.draw.line(win, (0, 0, 0), (i * gap, 0), (i * gap, self.height), thick)
-
-        # Draw Cubes
-        for i in range(self.rows):
-            for j in range(self.cols):
-                self.cubes[i][j].draw(win)
-
-    def select(self, row, col):
-        # Reset all other
-        for i in range(self.rows):
-            for j in range(self.cols):
-                self.cubes[i][j].selected = False
-
-        self.cubes[row][col].selected = True
-        self.selected = (row, col)
-
-    def clear(self):
-        row, col = self.selected
-        if self.cubes[row][col].value == 0:
-            self.cubes[row][col].set_temp(0)
-
-    def click(self, pos):
-        """
-        :param: pos
-        :return: (row, col)
-        """
-        if pos[0] < self.width and pos[1] < self.height:
-            gap = self.width / 9
-            x = pos[0] // gap
-            y = pos[1] // gap
-            return (int(y),int(x))
-        else:
-            return None
-
-    def is_finished(self):
-        for i in range(self.rows):
-            for j in range(self.cols):
-                if self.cubes[i][j].value == 0:
-                    return False
-        return True
+    # Square lines
+    for i in range(0, width, square): # vertical
+        pygame.draw.line(display, color['black'], (i,0),(i,height), 4)
+    for j in range(0, height, square): # horizontal
+        pygame.draw.line(display, color['black'], (0,j), (width, j), 4)
     
-class Cube:
-    rows = 9
-    cols = 9
+    # Cell Lines
+    for i in range(0, width, cell): # vertical
+        if i % square != 0:
+            pygame.draw.line(display, color['black'], (i,0),(i,height), 1)
+    for j in range(0, height, cell): # horizontal
+        if j % square != 0:
+            pygame.draw.line(display, color['black'], (0,j),(width, j), 1)
     
-    def __init__(self, value, row, col, width, height):
-        self.value = value
-        self.temp = 0
-        self.row = row
-        self.col = col
-        self.width = width
-        self.height = height
-        self.selected = False
-        
-    def draw(self, win):
-        fnt = pygame.font.SysFont("comicsans", 40)
-        
-        gap = self.width / 9
-        x = self.col * gap
-        y = self.row * gap
-        
-        if self.temp != 0 and self.value == 0:
-            text = fnt.render(str(self.temp), 1, (128,128,128))
-            win.blit(text, (x+5, y+5))
-        elif not(self.value == 0):
-            text = fnt.render(str(self.value), 1, (0, 0, 0))
-            win.blit(text, (x + (gap/2 - text.get_width()/2), y + 
-                            (gap/2 - text.get_height()/2)))
+    return None
 
-        if self.selected:
-            pygame.draw.rect(win, (255,0,0), (x,y, gap ,gap), 3)
-
-    def set(self, val):
-        self.value = val
-
-    def set_temp(self, val):
-        self.temp = val
-
-
-# draws the window, board, time, and strikes
-def redraw_window(win, board, strikes):
-    win.fill((255,255,255))
-    fnt = pygame.font.SysFont("comicsans", 40)
-
-    # strikes
-    text = fnt.render("X " * strikes, 1, (255, 0, 0))
-    win.blit(text, (20, 560))
+# Window + Title + Main Loop
+def main():
+    global display
     
-    # draw grid and board
-    board.draw(win)
-
-def GUI():
-    window = pygame.display.set_mode((500, 600))
+    pygame.init()
+    display = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Sudoku")
-    board = Grid(9, 9, 500, 500)
-    run = True
-
+    display.fill(color['white'])
     
-    strikes = 0 
+    drawGrid()
     
-    keys = {
-            pygame.K_1:1, pygame.K_2:2, pygame.K_3:3, pygame.K_4:4,
-            pygame.K_5:5, pygame.K_6:6, pygame.K_7:7, pygame.K_8:8,
-            pygame.K_9:9, pygame.K_DELETE:None, pygame.K_RETURN:True
-            }
-    
-    while run:
-        
+    # Main Loop
+    while True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-            if event.type == pygame.KEYDOWN:
-                key = keys[event.key] 
-                
-                if key == None:
-                    board.clear()
-                    
-                if key == True:
-                    i, j = board.selected
-                    if board.cubes[i][j].temp != 0:
-                        if board.place(board.cubes[i][j].temp):
-                            print("Success")
-                        else:
-                            print("Wrong")
-                            strikes += 1
-                        key = None
-
-                        if board.is_finished():
-                            print("Game over")
-                            run = False
-
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                pos = pygame.mouse.get_pos()
-                clicked = board.click(pos)
-                if clicked:
-                    board.select(clicked[0], clicked[1])
-                    key = None
-
-        if board.selected and key != None:
-            board.sketch(key)
-
-        redraw_window(window, board, strikes)
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
         pygame.display.update()
-GUI()
-pygame.quit()
+
+
+if __name__ == '__main__':
+    main()
