@@ -7,8 +7,10 @@ Written in Python 3.7
 
 ## To Do List:
 - [x] Generate a solvable Sudoku board
+- [x] Create grid with filled in cells
+- [ ] Make the board interactable
 - [ ] Create a live demo of board creation
-- [ ] Create an interactive Sudoku board
+
 
 ---
 
