@@ -22,7 +22,14 @@ Uses Sudoku_Solver's output to randomly erase at least 17 cells to generate a Su
 user-friendly version of the board as shown above.
 
 ## Sudoku_GUI :hourglass:
-Work in progress. Uses pygame and the above scripts to make an interactive Sudoku game.
+Work in progress. Uses pygame and the above scripts to make an interactive Sudoku game.  
+
+TO DO:
+- [x] Draw puzzle onto the window
+- [ ] Mouse clicks over cells selects and highlights them
+- [ ] Enable number input
+- [ ] Enable number input check
+- [ ] Add a reset button to make a new puzzle and a clear button
 
 ---
 
