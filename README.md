@@ -26,7 +26,7 @@ Work in progress. Uses pygame and the above scripts to make an interactive Sudok
 
 TO DO:
 - [x] Draw puzzle onto the window
-- [ ] Mouse clicks over cells selects and highlights them
+- [ ] Mouse clicks over cells select and highlight them
 - [ ] Enable number input
 - [ ] Enable number input check
 - [ ] Add a reset button to make a new puzzle and a clear button
