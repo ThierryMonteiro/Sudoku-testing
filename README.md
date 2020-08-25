@@ -3,7 +3,7 @@ Creates a Sudoku board using a backtracking algorithm
 Generator needs Solver and GUI needs Solver and Generator  
 Written in Python 3.7  
 
-![Example Board](Media/Sudoku.PNG)  
+![Example Board](Media/Sudoku_v2.PNG)  
 
 ## To Do List:
 - [x] Generate a solvable Sudoku board
