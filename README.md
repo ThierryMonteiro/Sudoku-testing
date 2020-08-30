@@ -8,9 +8,8 @@ Written in Python 3.7
 ## To Do List:
 - [x] Generate a solvable Sudoku board
 - [x] Create grid with filled in cells
-- [ ] Make the board interactable
+- [x] Make the board interactable
 - [ ] Create a live demo of board creation
-
 
 ---
 
@@ -26,7 +25,7 @@ Work in progress. Uses pygame and the above scripts to make an interactive Sudok
 
 TO DO:
 - [x] Draw puzzle onto the window
-- [ ] Mouse clicks over cells select and highlight them
+- [x] Mouse clicks over cells select and highlight them
 - [ ] Enable number input
 - [ ] Enable number input check
 - [ ] Add a reset button to make a new puzzle and a clear button
