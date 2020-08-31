@@ -31,7 +31,7 @@ TO DO:
 - [x] Mouse clicks over cells select and highlight them
 - [x] Enable number input
 - [x] Enable number input check
-- [ ] Add a reset button to make a new puzzle and a clear button
+- [ ] Add a check solution button
 
 ---
 
