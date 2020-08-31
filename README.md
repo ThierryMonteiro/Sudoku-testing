@@ -13,7 +13,6 @@ Written in Python 3.7
 - [x] Generate a solvable Sudoku board
 - [x] Create grid with filled in cells
 - [x] Make the board interactable
-- [ ] Create a live demo of board creation
 
 ---
 
