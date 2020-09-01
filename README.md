@@ -23,7 +23,7 @@ Creates a completed 9x9 Sudoku board by using a backtracking algorithm to random
 Uses Sudoku_Solver's output to randomly erase at least 17 cells to generate a Sudoku puzzle. Also prints out a more  
 user-friendly version of the board as shown above.
 
-## Sudoku_GUI :hourglass:
+## Sudoku_GUI :ballot_box_with_check:
 Work in progress. Uses pygame and the above scripts to make an interactive Sudoku game.  
 
 TO DO:
