@@ -30,24 +30,24 @@ def solve(grid):
         
     return False
 
-# Used for the GUI. Solves the created puzzle
-def solver(grid):
-    find = is_empty(grid)
-    if not find:
-        return True
-    else:
-        row, col = find
-
-    for i in range(1,10):
-        if check(grid, i, (row, col)):
-            grid[row][col] = i
-
-            if solve(grid):
-                return True
-
-            grid[row][col] = 0
-
-    return False
+# Solves the puzzle. Used to check if solution and solved puzzle matched
+#def solver(grid):
+#    find = is_empty(grid)
+#    if not find:
+#        return True
+#    else:
+#        row, col = find
+#
+#    for i in range(1,10):
+#        if check(grid, i, (row, col)):
+#            grid[row][col] = i
+#
+#            if solve(grid):
+#                return True
+#
+#            grid[row][col] = 0
+#
+#    return False
 
 # Checks to see if number placement is valid
 def check(grid, num, pos):
