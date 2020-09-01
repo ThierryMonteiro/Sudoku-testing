@@ -8,7 +8,7 @@ pyggame GUI for Sudoku
 """
 import pygame, sys
 from pygame.locals import *
-from Sudoku_Generator import maker
+from Sudoku_Generator import maker, format
 pygame.font.init()
 puzzle, solu = maker()
     
@@ -37,7 +37,10 @@ def drawNum(puzzle, solu, soluOn, display):
             # inputs are unique in that they're strings which can be used to separate
             # them from the original numbers
             num = puzzle[i][j]
-            if type(num) == str and num != ' ':
+            if type(num) == str and num != ' ' and soluOn == True:
+                text = font.render(str(solu[i][j]), True, color['input'])
+                display.blit(text, (x-12,y-15))
+            elif type(num) == str and num != ' ':
                 text = font.render(str(num), True, color['input'])
                 display.blit(text, (x-12,y-15))
             elif type(num) == int and num != ' ':      
@@ -47,6 +50,7 @@ def drawNum(puzzle, solu, soluOn, display):
             elif num == ' ' and soluOn == True:
                 text = font.render(str(solu[i][j]), True, color['re'])
                 display.blit(text, (x-12,y-15))
+            
             x += cell
         x = cell // 2
         y += cell 
@@ -170,13 +174,13 @@ def main():
                 # Solve button selection
                 if width // 2 - cell + cell*2 > pos[0] > width // 2 - cell and (height+ex)-77 + cell > pos[1] > (height+ex)-77:
                     soluOn = True
-                    redrawer(puzzle, solu, soluOn)
-                    
+                    redrawer(puzzle, solu, soluOn)                 
                 # New Game button
                 if width // 6 - cell + cell*2 > pos[0] > width // 6 - cell and (height+ex)-77 + cell > pos[1] > (height+ex)-77:
                     puzzle, solu = maker()
                     soluOn = False
                     redrawer(puzzle, solu, soluOn)
+#                    format(solu)
                     
                     
         # Takes input and updates puzzle with it so it won't get erased
