@@ -6,7 +6,7 @@ Written in Python 3.7
 ### Initial Board
 ![Example Board](Media/Sudoku_v2.PNG) 
 
-### Added cell selection, number input, and input check against the solution
+### Added cell selection and number input
 ![Board](Media/Sudoku_2.PNG)
 
 ## To Do List:
