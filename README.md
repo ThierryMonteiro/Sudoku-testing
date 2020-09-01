@@ -36,4 +36,4 @@ TO DO:
 ---
 
 ### Setup
-Download and run in your favorite interpreter
+Download and run in your favorite IDE
