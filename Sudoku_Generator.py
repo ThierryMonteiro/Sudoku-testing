@@ -28,7 +28,7 @@ def maker():
     # the 30 limit is arbitrary
     for i in sample(range(81), sample(range(17,31),1)[0]):
         puzzle[i//9][i%9] = ' '
-    return puzzle
+    return puzzle, sol
 
 # formats the puzzle into a more user-friendly format
 def format(puzzle):
@@ -54,3 +54,4 @@ def format(puzzle):
             
 if __name__ == '__main__':
     format(maker())
+
