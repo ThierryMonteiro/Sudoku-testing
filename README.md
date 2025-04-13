@@ -5,6 +5,9 @@ Written in Python 3.7
 
 We are using this fork to showcase pytest utility as an college assigment.
 
+Use pytest --cov --cov-report=html --cov-config=.coveragerc --html=report.html
+ no diretório raiz para testar o código e obter report de coverage e dos testes em si.
+
 ### Final Version
 ![Final](Media/Sudoku_ex.gif)
 
