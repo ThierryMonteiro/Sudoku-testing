@@ -20,11 +20,13 @@ def test_is_empty(empty_grid):
 
 def test_row():
     grid = [[i for i in range(9)] for _ in range(9)]
+    print(grid)
     assert row(grid, 0) == list(range(9))
     assert row(grid, 3) == list(range(9))
 
 def test_column():
     grid = [[j for j in range(9)] for j in range(9)]
+    print(grid)
     assert column(grid, 0) == list(range(9))
     assert column(grid, 5) == [5 for _ in range(9)]
 

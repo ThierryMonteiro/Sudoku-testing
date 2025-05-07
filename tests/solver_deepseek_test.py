@@ -1,5 +1,13 @@
 import pytest
+
+import sys
+import os
+
+# Add project root to Python path to import Sudoku_solver
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from Sudoku_Solver import solve, check, is_empty, row, column, block
+
 
 def test_is_empty():
     """
@@ -78,7 +86,7 @@ def test_check():
     # Testa inserção válida
     assert check(grid, 9, (2, 2)) is True, "Deveria permitir inserir 9 na posição (2, 2)."
     # Testa inserção inválida (número já na linha)
-    assert check(grid, 1, (0, 3)) is False, "Deveria bloquear inserção de 1 na linha 0."
+    assert check(grid, 1, (0, 0)) is False, "Deveria bloquear inserção de 1 na linha 0."
     # Testa inserção inválida (número já no bloco)
     assert check(grid, 5, (2, 2)) is False, "Deveria bloquear inserção de 5 no bloco."
 

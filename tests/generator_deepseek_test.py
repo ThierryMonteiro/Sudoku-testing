@@ -1,6 +1,14 @@
 import pytest
-from Sudoku_Generator import solution, maker, format
 from copy import deepcopy
+
+import sys
+import os
+
+# Add project root to Python path to import Sudoku_solver
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from Sudoku_Generator import solution, maker, format
+
 
 def test_solution():
     """
